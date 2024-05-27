@@ -33,3 +33,58 @@ Queries and Mutations: Clients send queries to fetch data and mutations to modif
 Resolvers: Resolvers are functions that handle the fetching and processing of data for each field in the schema. They connect the schema to your back-end data sources.
 
 Execution: The GraphQL server parses and validates the incoming query, checks it against the schema, and then uses resolvers to fetch the required data. The server then returns a JSON response to the client.
+
+
+
+
+
+
+
+Setting Up Dependencies
+
+     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-graphql</artifactId>
+      </dependency>
+
+
+
+Define the GraphQL Schema
+
+      type User {
+     userID: ID!
+    name: String
+    phoneNO: String
+    email: String
+    password: String
+      orders: [Order]
+     }
+
+    type Order {
+    orderID: ID!
+    orderDetail: String
+    amount: Float
+    user: User
+    }
+
+    type Query {
+    getUsers: [User]
+    getUser(userID: ID!): User
+    getOrders: [Order]
+    getOrder(orderID: ID!): Order
+    }
+
+    type Mutation {
+     createUser(name: String, phoneNO: String, email: String, password: String): User
+    deleteUser(userID: ID!): Boolean
+    createOrder(orderDetail: String, amount: Float, userID: ID!): Order
+    deleteOrder(orderID: ID!): Boolean
+    }
+
+
+
+DAO or JDBC -> Services -> Controllers(rest or normal) 
+
+
+Run Your Application
+With everything in place, you can run your Spring Boot application. Use the GraphQL endpoint (by default at /graphql) to interact with your API. You can use tools like GraphiQL or Postman to test your queries and mutations.
