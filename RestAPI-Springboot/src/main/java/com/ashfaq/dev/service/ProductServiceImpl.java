@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ashfaq.dev.exception.InvalidProductIdException;
+import com.ashfaq.dev.exception.ProductNotFoundException;
 import com.ashfaq.dev.model.Product;
 import com.ashfaq.dev.repository.ProductRepository;
 
@@ -23,7 +25,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
+    	if (id == null || id <= 0) {
+            throw new InvalidProductIdException("Invalid product ID: " + id);
+        }
+    	Optional<Product> product = productRepository.findById(id);
+    	 if (product.isEmpty()) {
+             throw new ProductNotFoundException("Product not found with id: " + id);
+         }
+        return product;
     }
 
     @Override
@@ -43,7 +52,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+    	   if (id == null || id <= 0) {
+               throw new InvalidProductIdException("Invalid product ID: " + id);
+           }
+           if (!productRepository.existsById(id)) {
+               throw new ProductNotFoundException("Product not found with id: " + id);
+           }
+           productRepository.deleteById(id);
     }
     
     @Override
