@@ -10,6 +10,7 @@ public class RestApiSpringbootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestApiSpringbootApplication.class, args);
+		
 	}
 
 }

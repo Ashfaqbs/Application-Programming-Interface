@@ -24,7 +24,7 @@ public class PaymentService {
     ));
 
     public PaymentDTO convertToDTO(Payment payment) {
-        return new PaymentDTO(payment.getCost(), payment.getProductName(), payment.getTransactionId());
+        return new PaymentDTO(payment.getId(),payment.getCost(), payment.getProductName(), payment.getTransactionId());
     }
 
     public List<PaymentDTO> getAllPayments() {
