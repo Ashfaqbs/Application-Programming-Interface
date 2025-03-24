@@ -1,0 +1,30 @@
+package com.ashfaq.example.services;
+import com.ashfaq.example.dao.ItemRepository;
+import com.ashfaq.example.model.Item;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+public class ItemService {
+    private final ItemRepository itemRepository;
+
+    public List<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
+
+    public Optional<Item> getItemById(Long id) {
+        return itemRepository.findById(id);
+    }
+
+    public Item saveItem(Item item) {
+        return itemRepository.save(item);
+    }
+
+    public void deleteItem(Long id) {
+        itemRepository.deleteById(id);
+    }
+}

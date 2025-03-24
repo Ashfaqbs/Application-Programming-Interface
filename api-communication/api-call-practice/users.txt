@@ -1,0 +1,24 @@
+ADMIN ROLE
+
+{
+    "username":"ashu",
+    "password":"ashu",
+     "role":"ADMIN"
+}
+
+
+
+USER ROLE
+
+{
+    "username":"sonu",
+    "password":"sonu",
+    "role":"USER"
+}
+
+{
+    "id": 2,
+    "username": "sonu",
+    "password": "$2a$10$SFgy9iHF/MXBl7phz6fbs.V46AgT0qMX24L1lUcTpxG1Xe9jgmg.G",
+    "role": "USER"
+}

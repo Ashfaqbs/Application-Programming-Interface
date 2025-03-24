@@ -1,0 +1,4 @@
+package com.ashfaq.example.dao;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {
+}
