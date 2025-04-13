@@ -1,8 +1,8 @@
 ### 🔁 Normal REST API (`/user/{id}`)
 > Like: `GET /user/123`
 
-When you call this:
-- Your Spring `RestTemplate` or WebClient sends a request.
+When we call this:
+- our Spring `RestTemplate` or WebClient sends a request.
 - Server gives the response and **closes** the connection.
 - One-time communication. That’s it.
 
@@ -17,14 +17,14 @@ When you call this:
 These are **not typical REST APIs**. They fall into one of these categories:
 
 #### 1. **Polling** (Normal or Long Polling)
-You (the client) **keep calling** the server repeatedly:
+we (the client) **keep calling** the server repeatedly:
 - Example: `/events/latest` every 5 seconds.
 - Server gives new data *if available*.
 - **Client controls the loop**, not the server.
 - Heavy on network/resources if frequent.
 
 #### 2. **SSE (Server-Sent Events)**
-You hit `/sse/stream` **once**, server:
+we hit `/sse/stream` **once**, server:
 - **Keeps the connection open**.
 - **Pushes updates** as they happen (`data: ...\n\n` format).
 - Efficient because no need to reconnect.
@@ -37,8 +37,8 @@ You hit `/sse/stream` **once**, server:
 
 #### 4. **Webhooks**
 - Different from above. Instead of client asking,
-- Server **calls the client** when event happens (you expose an endpoint).
-- Passive — you wait to be notified.
+- Server **calls the client** when event happens (we expose an endpoint).
+- Passive — we wait to be notified.
 
 ---
 
@@ -94,13 +94,13 @@ And we’ll explore **use-cases**, **who is source**, **who is caller**, and **w
 | Role    | Who is it?     | What they do                        |
 |---------|----------------|-------------------------------------|
 | 🔹 Source | Server         | Holds the data                      |
-| 🔸 Caller | Client (your SpringBoot app) | Sends HTTP request, gets response |
+| 🔸 Caller | Client (our SpringBoot app) | Sends HTTP request, gets response |
 
 ---
 
 ## 🔸 Dynamic / Streaming Content APIs
 
-These are **used when data keeps changing**, and you want:
+These are **used when data keeps changing**, and we want:
 - **Real-time** updates
 - **Low-latency** or event-based communication
 
@@ -130,7 +130,7 @@ These are **used when data keeps changing**, and you want:
 | **Long Polling**  | Client        | ✅ (till data/timeout) | 1-way         | Pull      | Facebook message indicator |
 | **SSE**           | Client        | ✅ (single connection) | 1-way         | Push      | Live notifications |
 | **WebSocket**     | Client        | ✅                 | 2-way         | Push + Pull | Multiplayer games, Chat |
-| **Webhook**       | Server        | ❌ (calls your exposed API) | 1-way         | Push      | Payment Gateway informing your system |
+| **Webhook**       | Server        | ❌ (calls our exposed API) | 1-way         | Push      | Payment Gateway informing our system |
 
 ---
 
