@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: ratelimit-demo
+
+server:
+  port: 8080
+
+# -------------------------------------------------------
+# Rate Limiting Strategy
+# Change ONE value here to switch the entire approach.
+#
+#   INTERCEPTOR — annotation-driven, reads @RateLimit on each controller method
+#                 algorithm swappable in config/RateLimitConfig.java
+#
+#   FILTER      — URL pattern-driven, no-library implementation
+#                 routes + algorithms configured in ratelimit/filter/FilterRateLimitConfig.java
+#
+#   BUCKET4J    — URL pattern-driven, Bucket4j library
+#                 routes + bandwidths configured in ratelimit/withlibrary/Bucket4jFilterConfig.java
+# -------------------------------------------------------
+rate:
+  limit:
+    strategy: INTERCEPTOR
+
+logging:
+  level:
+    com.example.ratelimit_demo: DEBUG
