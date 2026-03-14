@@ -1,0 +1,11 @@
+package com.example.ratelimit_demo.dto;
+
+import java.math.BigDecimal;
+
+public record ProductResponse(
+        Long id,
+        String name,
+        String category,
+        BigDecimal price,
+        int stockCount
+) {}
